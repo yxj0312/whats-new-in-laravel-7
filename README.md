@@ -43,3 +43,42 @@ $stub = <<<stub
         ->replace('{{CLASS}}', $className)
         ->start("<?php\n\n");
 ```
+
+## Ep3 Casting Eloquent Attributes to Value Objects
+
+```php
+// in User model:
+protected $casts = [
+    'email' => EmailCast::class
+]
+
+
+class EmailCast implements CastsAttributes
+{
+    public function get($model, string $key, $value, array $Attributes)
+    {
+        // $user->email
+        return new Email($value);
+    }
+
+    public function set($model, string $key, $value, array $attributes)
+    {
+        return $value->address;
+    }
+}
+
+class Email
+{
+    public $address;
+
+    public function __construct($address)
+    {
+        $this->address = $address;
+    }
+}
+
+// now when $user->email, u get:
+App\Email {
+    address: "12312@123.net"
+}
+```
