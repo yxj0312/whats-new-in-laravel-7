@@ -46,6 +46,8 @@ $stub = <<<stub
 
 ## Ep3 Casting Eloquent Attributes to Value Objects
 
+You now have a place to store the following logics.
+
 ```php
 // in User model:
 protected $casts = [
@@ -73,12 +75,72 @@ class Email
 
     public function __construct($address)
     {
+        if (! filter_var($address, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException('Invalid email here');
+        }
+
         $this->address = $address;
     }
+
+    public function domain()
+    {
+        // foo@example.com
+        return Str::of(this->address)->after('@')->__toString();
+    }
+
 }
 
 // now when $user->email, u get:
 App\Email {
     address: "12312@123.net"
+}
+```
+
+One more: a vacation model:
+
+```php
+class Vacation extends model
+{
+    protected $casts = [
+        'schedule' => ScheduleCast::class
+    ]
+}
+
+class ScheduleCast implements CastsAttributes
+{
+    public function get($model, string $key, $value, array $Attributes)
+    {
+        // $user->email
+        return new Schedule(
+            $attributes['start'],
+            $attributes['end']
+        );
+    }
+
+    public function set($model, string $key, $value, array $attributes)
+    {
+        return [
+            'start' => $value->start,
+            'end' => $value->end
+        ];
+    }
+}
+
+class Schedule
+{
+    public $start;
+
+    public $end;
+
+    public function __construct($start, $end)
+    {
+        $this->start = $start;
+        $this->end = $end;
+    } 
+
+    public function nearingEnd()
+    {
+        return Carbon::parse($this->end)->lte(Carbon::tomorrow());
+    }
 }
 ```
