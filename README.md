@@ -144,3 +144,40 @@ class Schedule
     }
 }
 ```
+
+## Ep 4 Route Custom Keys With Scoping
+
+```php
+Route::get('/posts/{post}', function (Post $post) {
+    return $post;
+});
+
+
+// To track down a post by its slug instead of id until laravel 7, u should do: in the post model
+
+public function getRouteKeyName()
+{
+    return 'slug';
+}
+
+
+// Now:in router file u can do:
+Route::get('/posts/{post:slug}', function (Post $post) {
+    return $post;
+});
+
+// Sometimes u want to scope a search, before if u go users/1/posts/1, u get the user_id = 2
+Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
+    return $post;
+});
+
+// before, u must do:
+Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
+    return $user->posts()->findOrFail($post->id);
+});
+
+// now you can use above, it works, or u can do it with slug
+Route::get('/users/{user}/posts/{post:slug}', function (User $user, Post $post) {
+    return $post;
+});
+```
