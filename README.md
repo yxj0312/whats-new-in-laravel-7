@@ -136,7 +136,7 @@ class Schedule
     {
         $this->start = $start;
         $this->end = $end;
-    } 
+    }
 
     public function nearingEnd()
     {
