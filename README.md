@@ -181,3 +181,28 @@ Route::get('/users/{user}/posts/{post:slug}', function (User $user, Post $post) 
     return $post;
 });
 ```
+
+### Ep 5 The New HTTP Client
+
+```php
+Http::get('https://reqres.in/api/users')->json()['data']
+
+Http::post('https://reqres.in/api/users', [
+    'name' => 'john doe',
+    'job' => 'student'
+])->status();
+
+// U can get from any public gist. or use withToken
+Http::withToken()
+
+// It use Guzzle behind.
+
+Http::fake(function ($request) {
+    return Http::response(['foo' => 'bar', 200]);
+});
+
+Http::assertSent(function ($request, $response) {
+    return $response['foo']  === 'bar'
+});
+
+```
