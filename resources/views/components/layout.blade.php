@@ -18,7 +18,6 @@
         </header>
 
         <div class="flex p-4">
-
             @if (isset($sidebar))    
                 <aside class="w-1/4">
                     {{ $sidebar }}
