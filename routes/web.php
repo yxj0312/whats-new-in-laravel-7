@@ -30,3 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blade-components-cookbook-ep1', function () {
     return view('welcome');
 });
+
+Route::get('/blade-components-cookbook-ep2', function () {
+    return view('ep2');
+});
