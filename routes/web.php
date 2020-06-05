@@ -1,5 +1,6 @@
 <?php
 
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,16 @@ Route::get('/blade-components-cookbook-ep1', function () {
 
 Route::get('/blade-components-cookbook-ep2', function () {
     return view('ep2');
+});
+
+Route::get('/blade-components-cookbook-ep3/comments/{comment}/edit', function (Comment $comment) {
+    return view('comments.edit', ['comment' => $comment]);
+});
+
+Route::patch('/blade-components-cookbook-ep3/comments/{comment}', function (Comment $comment) {
+   $comment->update(
+       request()->validate(['body' => 'required|string'])
+   );
+
+   return redirect("/blade-components-cookbook-ep3/comments/{$comment->id}/edit");
 });
