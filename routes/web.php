@@ -47,3 +47,9 @@ Route::patch('/blade-components-cookbook-ep3/comments/{comment}', function (Comm
 
    return redirect("/blade-components-cookbook-ep3/comments/{$comment->id}/edit");
 });
+
+Route::delete('/blade-components-cookbook-ep3/comments/{comment}', function (Comment $comment) {
+    $comment->delete();
+
+    return redirect('/home');
+});

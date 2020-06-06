@@ -25,5 +25,13 @@
                 </button>
             </div>
     	</x-form>
+        
+        <x-form-button 
+            method="DELETE"
+            action="/blade-components-cookbook-ep3/comments/{{ $comment->id }}"
+            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+        >
+            Delete
+        </x-form-button>
     </x-section>
 </x-layout>
