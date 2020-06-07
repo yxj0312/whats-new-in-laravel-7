@@ -10,6 +10,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
     <body class="h-screen">
         <x-notification type="success" description="Placeholder description" class="text-white"></x-notification>

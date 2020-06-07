@@ -53,3 +53,7 @@ Route::delete('/blade-components-cookbook-ep3/comments/{comment}', function (Com
 
     return redirect('/home');
 });
+
+Route::get('/blade-components-cookbook-ep5', function () {
+    return view('ep5');
+});
