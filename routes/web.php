@@ -61,3 +61,11 @@ Route::get('/blade-components-cookbook-ep5', function () {
 Route::get('/blade-components-cookbook-ep6', function () {
     return view('ep6');
 });
+
+Route::get('/blade-components-cookbook-ep7', function () {
+    return view('ep7');
+});
+
+Route::get('/blade-components-cookbook-ep7/testimonials', function () {
+    return view('ep7-test');
+})->name('testimonials');

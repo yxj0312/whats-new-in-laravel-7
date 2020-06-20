@@ -13,11 +13,9 @@
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
-    <body class="h-screen">
-        <x-notification type="success" description="Placeholder description" class="text-white"></x-notification>
-        <header class="p-4 mx-auto bg-gray-400">
-            <h1 class="font-bold text-lg">My Site: {{ $title }}</h1>
-        </header>
+    <body>
+        {{-- <x-notification type="success" description="Placeholder description" class="text-white"></x-notification> --}}
+        @include('partials.header')
 
         <div class="flex p-4">
             @if (isset($sidebar))    
