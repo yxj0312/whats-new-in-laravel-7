@@ -2,10 +2,10 @@
     <h1 class="font-bold tracking-widest uppercase">My Site: {{ $title }}</h1>
 
     <nav>
-        <a class="px-6 hover:underline hover:text-blue-500" href="/">Home</a>
-        <a class="px-6 hover:underline hover:text-blue-500" href="/about">About</a>
-        <a class="px-6 hover:underline hover:text-blue-500 {{ Request::is('blade-components-cookbook-ep7/testimonials') ? 'text-blue-500' : '' }}" href="/blade-components-cookbook-ep7/testimonials">Testimonials</a>
-        <a class="px-6 hover:underline hover:text-blue-500" href="/contact">Contact</a>
+        <x-nav-link route="home">Home</x-nav-link>
+        <x-nav-link route="about" title="About">About</x-nav-link>
+        <x-nav-link route="testimonials">Testimonials</x-nav-link>
+        <x-nav-link route="contact">Contact</x-nav-link>
     </nav>
 
     <x-dropdown alignment="right">

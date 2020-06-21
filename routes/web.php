@@ -66,6 +66,18 @@ Route::get('/blade-components-cookbook-ep7', function () {
     return view('ep7');
 });
 
+Route::get('/blade-components-cookbook-ep7/home', function () {
+    return view('ep7-home');
+})->name('home');
+
+Route::get('/blade-components-cookbook-ep7/about', function () {
+    return view('ep7-about');
+})->name('about');
+
 Route::get('/blade-components-cookbook-ep7/testimonials', function () {
     return view('ep7-test');
 })->name('testimonials');
+
+Route::get('/blade-components-cookbook-ep7/contact', function () {
+    return view('ep7-contact');
+})->name('contact');
