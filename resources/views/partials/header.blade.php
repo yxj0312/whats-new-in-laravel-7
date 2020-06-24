@@ -43,9 +43,9 @@
 
     {{-- mobile header --}}
     <div x-show="open" class="mt-3">
-        <a class="block py-2" href="/">Home</a>
-        <a class="block py-2" href="/">Home</a>
-        <a class="block py-2" href="/">Home</a>
-        <a class="block py-2" href="/">Home</a>
+        <x-mobile-nav-link route="home">Home</x-mobile-nav-link>
+        <x-mobile-nav-link route="about">About</x-mobile-nav-link>
+        <x-mobile-nav-link route="testimonials">Testimonials</x-mobile-nav-link>
+        <x-mobile-nav-link route="contact">Contact</x-mobile-nav-link>
     </div>
 </header>
