@@ -81,3 +81,7 @@ Route::get('/blade-components-cookbook-ep7/testimonials', function () {
 Route::get('/blade-components-cookbook-ep7/contact', function () {
     return view('ep7-contact');
 })->name('contact');
+
+Route::get('/blade-components-cookbook-ep8', function () {
+    return view('ep8');
+});
