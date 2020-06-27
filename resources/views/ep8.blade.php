@@ -1,6 +1,17 @@
 <x-layout title="Tabs Component">
     <x-section>
-        <div x-data="{ active: 'First' }">
+        <x-tabs>
+            <x-tab name="First">
+                First content goes there
+            </x-tab>
+
+            <x-tab name="First">
+                First content goes there
+            </x-tab>
+            
+            <x-tab name="First">
+                First content goes there
+            </x-tab>
             <div>
                 <button @click="active = 'First'">First</button>
                 <button @click="active = 'Second'">Second</button>
@@ -12,6 +23,6 @@
                 <div x-show="active === 'Second'">Second content goes here.</div>
                 <div x-show="active === 'Third'">Third content goes here.</div>
             </div>
-        </div>
+        </x-tabs>
     </x-section>
 </x-layout>
