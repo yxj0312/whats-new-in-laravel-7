@@ -35,12 +35,21 @@ class ApiExampleTest extends TestCase
     /** @test */
     function testPostExample()
     {
-        $this->withoutExceptionHandling();
         $user = factory(User::class)->create(['name' => 'John']);
         $this->actingAs($user, 'api');
 
         $this->post('api/users', ['name' => 'Foobar', 'email' => 'john@doe.com', 'password' => bcrypt('password')]);
 
         $this->assertDatabaseHas('users', ['email' => 'john@doe.com']);
+    }
+
+    /** @test */
+    function testQueryExample()
+    {   
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create(['name' => 'John']);
+        $this->actingAs($user, 'api');
+        $this->get('api/search/?q=Deathpool');
     }
 }

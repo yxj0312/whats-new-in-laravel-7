@@ -32,3 +32,7 @@ Route::middleware('auth:api')->post('/users', function (Request $request) {
 
     User::forceCreate($data);
 });
+
+Route::middleware('auth:api')->get('/search', function (Request $request) {
+    dd($request->query('q'));
+});
