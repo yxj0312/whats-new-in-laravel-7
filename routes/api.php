@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return ['stub'];
+    return User::all();
+});
+
+Route::middleware('auth:api')->get('/users/{name}', function ($name) {
+    return User::where('name', $name)->first();
+});
+
+Route::middleware('auth:api')->post('/users', function (Request $request) {
+    $data = $request->all();
+
+    User::forceCreate($data);
 });

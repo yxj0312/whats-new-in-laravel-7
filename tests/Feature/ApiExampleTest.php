@@ -16,6 +16,31 @@ class ApiExampleTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->actingAs($user, 'api');
-        $this->get('api/users')->assertJson(['stub']);
+
+        $this->get('api/users')->assertJson([$user->toArray()]);
+        $this->get('api/users')->assertJson([['name' => $user->name]]);
+    }
+    
+    /** @test */
+    function testSemiExample()
+    {
+        $user = factory(User::class)->create(['name' => 'John']);
+
+        $this->actingAs($user, 'api');
+        $this->get('api/users/John')->assertStatus(200)->assertJson([
+            'name' => 'John'
+        ]);
+    }
+
+    /** @test */
+    function testPostExample()
+    {
+        $this->withoutExceptionHandling();
+        $user = factory(User::class)->create(['name' => 'John']);
+        $this->actingAs($user, 'api');
+
+        $this->post('api/users', ['name' => 'Foobar', 'email' => 'john@doe.com', 'password' => bcrypt('password')]);
+
+        $this->assertDatabaseHas('users', ['email' => 'john@doe.com']);
     }
 }
