@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,16 @@ Route::middleware('auth:api')->post('/users', function (Request $request) {
     User::forceCreate($data);
 });
 
-Route::middleware('auth:api')->get('/search', function (Request $request) {
-    dd($request->query('q'));
+// Route::middleware('auth:api')->get('/search', function (Request $request) {
+Route::get('api/search', function (Request $request) {
+    $q = $request->query('q');
+    $result = Http::get("http://api.tvmaze.com/search/shows?q={$q}")->json();
+
+    $getShow = function($show) use ($q){   
+        return (stripos($show['show']['name'], $q) !== false);
+    };
+
+    $filtered = array_filter($result, $getShow);
+
+    return $filtered;
 });

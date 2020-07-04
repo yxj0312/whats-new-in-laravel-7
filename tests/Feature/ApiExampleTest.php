@@ -50,6 +50,6 @@ class ApiExampleTest extends TestCase
 
         $user = factory(User::class)->create(['name' => 'John']);
         $this->actingAs($user, 'api');
-        $this->get('api/search/?q=Deathpool');
+        $this->get('api/search/?q=deadwood');
     }
 }
