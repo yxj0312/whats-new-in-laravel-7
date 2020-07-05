@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -35,9 +36,18 @@ Route::middleware('auth:api')->post('/users', function (Request $request) {
 });
 
 // Route::middleware('auth:api')->get('/search', function (Request $request) {
-Route::get('api/search', function (Request $request) {
+Route::get('search', function (Request $request) {
     $q = $request->query('q');
-    $result = Http::get("http://api.tvmaze.com/search/shows?q={$q}")->json();
+
+    
+    // $result = Http::get("http://api.tvmaze.com/search/shows?q={$q}")->json();
+    $result = Http::get("http://api.tvmaze.com/search/shows?q={$q}");
+
+    dd($result->clientError());
+
+    dd($result->throw()->json());
+
+    die();
 
     $getShow = function($show) use ($q){   
         return (stripos($show['show']['name'], $q) !== false);

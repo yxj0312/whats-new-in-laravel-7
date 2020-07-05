@@ -52,4 +52,10 @@ class ApiExampleTest extends TestCase
         $this->actingAs($user, 'api');
         $this->get('api/search/?q=deadwood');
     }
+    
+    /** @test */
+    function invalid_request_will_give_400_error()
+    {
+        $this->get('api/bad-request/');
+    }
 }
