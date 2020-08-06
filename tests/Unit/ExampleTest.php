@@ -6,13 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    /** @test */
+    function test_echo()
     {
-        $this->assertTrue(true);
+        $a = 10; 
+        
+        dd($a++ + $a++); 
     }
 }
